@@ -8,8 +8,8 @@ const API_URL = `${serverURL}/users/me`;
 
 const userSchema = z.object({
   id: z.number(),
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string().nullable(),
+  lastName: z.string().nullable(),
   email: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
