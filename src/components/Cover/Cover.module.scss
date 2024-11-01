@@ -1,0 +1,16 @@
+.CoverContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 100vh;
+  padding: 80px;
+  background-color: hsl(var(--primary));
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  gap: 12px;
+  color: hsl(var(--primary-foreground));
+}
