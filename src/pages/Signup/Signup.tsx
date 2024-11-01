@@ -1,5 +1,3 @@
-import styles from './Signup.module.scss';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -17,6 +15,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { useLogin } from '@/hooks/auth/useLogin';
 import { useRegister } from '@/hooks/user/useRegister';
+
+import styles from './Signup.module.scss';
 
 const formSchema = z.object({
   email: z.string().email(),
