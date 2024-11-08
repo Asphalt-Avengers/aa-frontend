@@ -1,0 +1,23 @@
+.Menu {
+  padding: 8px;
+  margin: 16px 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.Header {
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 16px 8px;
+}
+
+.Footer {
+  margin: 16px 8px 32px;
+}
+
+.MapPin {
+  padding: 6px;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+}
