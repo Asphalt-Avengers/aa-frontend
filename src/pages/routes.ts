@@ -5,5 +5,10 @@ export const ROUTES = {
   LOGIN: '/login',
   SIGNUP: '/signup',
 
+  // Dashboard Routes
+  HOME: '/home',
+  REPORTS: '/reports',
+  SETTINGS: '/settings',
+
   NOT_FOUND: '*',
 };
