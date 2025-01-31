@@ -34,7 +34,7 @@ const updateReport = async (
 export const useUpdateReport = () => {
   return useMutation({
     mutationFn: ({
-      params,g
+      params,
       body,
     }: {
       params: UpdateReportParams;
