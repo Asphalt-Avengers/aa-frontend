@@ -6,11 +6,11 @@ import { ReportStatus } from '@/types';
 
 const API_URL = `${serverURL}/reports`;
 
-interface DeleteReportParams {
+interface UpdateReportParams {
   reportId: string;
 }
 
-interface DeleteReportBody {
+interface UpdateReportBody {
   location?: string;
   description?: string;
   comments?: string;
@@ -18,9 +18,9 @@ interface DeleteReportBody {
   details?: string;
 }
 
-const deleteReport = async (
-  params: DeleteReportParams,
-  body: DeleteReportBody
+const updateReport = async (
+  params: UpdateReportParams,
+  body: UpdateReportBody
 ) => {
   return await axios.put(
     `${API_URL}/${params.reportId}`,
@@ -31,14 +31,14 @@ const deleteReport = async (
   );
 };
 
-export const useDeleteReport = () => {
+export const useUpdateReport = () => {
   return useMutation({
     mutationFn: ({
-      params,
+      params,g
       body,
     }: {
-      params: DeleteReportParams;
-      body: DeleteReportBody;
-    }) => deleteReport(params, body),
+      params: UpdateReportParams;
+      body: UpdateReportBody;
+    }) => updateReport(params, body),
   });
 };
