@@ -1,14 +1,15 @@
 export const ROUTES = {
   ROOT: '/',
 
-  // Auth Routes
   LOGIN: '/login',
   SIGNUP: '/signup',
 
-  // Dashboard Routes
   HOME: '/home',
-  REPORTS: '/reports',
-  SETTINGS: '/settings',
+  OVERVIEW: '/home/overview',
+  MAP: '/home/map',
+  REPORTS: '/home/reports',
+
+  LOADING: '/loading',
 
   NOT_FOUND: '*',
 };

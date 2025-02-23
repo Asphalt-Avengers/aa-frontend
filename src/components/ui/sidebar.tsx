@@ -14,7 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/ui/use-mobile';
 import { cn } from '@/lib/utils';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state';
@@ -247,7 +247,7 @@ const Sidebar = React.forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col gap-4 pt-6 pb-8 bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>
@@ -270,7 +270,7 @@ const SidebarTrigger = React.forwardRef<
       data-sidebar="trigger"
       variant="ghost"
       size="icon"
-      className={cn('h-7 w-7', className)}
+      className={className}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
@@ -357,7 +357,7 @@ const SidebarHeader = React.forwardRef<
     <div
       ref={ref}
       data-sidebar="header"
-      className={cn('flex flex-col gap-2 p-2', className)}
+      className={cn('flex flex-col px-4', className)}
       {...props}
     />
   );
@@ -372,7 +372,7 @@ const SidebarFooter = React.forwardRef<
     <div
       ref={ref}
       data-sidebar="footer"
-      className={cn('flex flex-col gap-2 p-2', className)}
+      className={cn('flex flex-col gap-1 px-4', className)}
       {...props}
     />
   );
@@ -387,7 +387,7 @@ const SidebarSeparator = React.forwardRef<
     <Separator
       ref={ref}
       data-sidebar="separator"
-      className={cn('mx-2 w-auto bg-sidebar-border', className)}
+      className={cn('w-auto bg-sidebar-border', className)}
       {...props}
     />
   );
@@ -403,7 +403,7 @@ const SidebarContent = React.forwardRef<
       ref={ref}
       data-sidebar="content"
       className={cn(
-        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'flex min-h-0 flex-1 flex-col gap-1 px-4 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
         className
       )}
       {...props}
@@ -520,7 +520,7 @@ const sidebarMenuButtonVariants = cva(
           'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]',
       },
       size: {
-        default: 'h-8 text-sm',
+        default: 'h-10 text-sm',
         sm: 'h-7 text-xs',
         lg: 'h-12 text-sm group-data-[collapsible=icon]:!p-0',
       },
