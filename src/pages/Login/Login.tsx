@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-import { Typography } from '@/components/Typography';
+import { Typography } from '@/components/custom/Typography/Typography';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useLogin } from '@/hooks/auth/useLogin';
-import { ROUTES } from '@/pages/routes';
 
 import styles from './Login.module.scss';
 
@@ -43,14 +42,10 @@ export const Login: React.FC = () => {
     });
   };
 
-  const handleNavigateToSignup = () => {
-    navigate(ROUTES.SIGNUP);
-  };
-
   return (
     <div className={styles.loginContainer}>
       <div className={styles.header}>
-        <Typography variant="extra-large-600" className={styles.text}>
+        <Typography variant="h3" className={styles.text}>
           Welcome to CitySpot
         </Typography>
       </div>
@@ -95,20 +90,6 @@ export const Login: React.FC = () => {
           </form>
         </div>
       </Form>
-      <div className={styles.footer}>
-        <Typography variant="small-medium-400" className={styles.caption}>
-          Don&apos;t have an account yet?
-        </Typography>
-        <Button
-          variant="link"
-          className={styles.footerButton}
-          onClick={handleNavigateToSignup}
-        >
-          <Typography variant="small-medium-400" className={styles.text}>
-            Sign up
-          </Typography>
-        </Button>
-      </div>
     </div>
   );
 };
