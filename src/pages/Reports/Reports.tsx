@@ -6,7 +6,7 @@ export const Reports: React.FC = () => {
   return (
     <Page>
       <PageDate />
-      <PageHeader>Reports</PageHeader>
+      <PageHeader className="mb-8">Reports</PageHeader>
       <PageContent>
         <ReportsTable />
       </PageContent>
