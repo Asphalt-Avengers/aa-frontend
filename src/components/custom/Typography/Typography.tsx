@@ -73,7 +73,7 @@ export const Typography: React.FC<TypographyProps> = ({
   children,
 }) => {
   return (
-    <p
+    <text
       id={id}
       className={classNames(
         'font-inter',
@@ -82,6 +82,6 @@ export const Typography: React.FC<TypographyProps> = ({
       )}
     >
       {children}
-    </p>
+    </text>
   );
 };
