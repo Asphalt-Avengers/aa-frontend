@@ -32,7 +32,10 @@ const chartConfig = {
 
 export const DoubleBar: React.FC<DoubleBarProps> = ({ data }) => {
   return (
-    <ChartContainer config={chartConfig} className="h-[660px] w-full">
+    <ChartContainer
+      config={chartConfig}
+      className="h-[60%] w-[80%] place-self-center"
+    >
       <BarChart accessibilityLayer data={data}>
         <CartesianGrid vertical={false} />
         <XAxis
