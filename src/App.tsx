@@ -7,7 +7,7 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import { useMe } from '@/hooks/user/useMe';
+import { useCurrentUser } from '@/hooks/user/useCurrentUser';
 import { Auth } from '@/layouts/Auth';
 import { Dashboard } from '@/layouts/Dashboard';
 import { Map, Overview, Reports } from '@/pages';
@@ -15,7 +15,7 @@ import { Login } from '@/pages/Login';
 import { ROUTES } from '@/pages/routes';
 
 const PublicRoute: React.FC = () => {
-  const { data: user, isLoading } = useMe();
+  const { data: user, isLoading } = useCurrentUser();
 
   if (isLoading) {
     return;
@@ -25,7 +25,8 @@ const PublicRoute: React.FC = () => {
 };
 
 const ProtectedRoute: React.FC = () => {
-  const { data: user, isLoading } = useMe();
+  return <Outlet />;
+  const { data: user, isLoading } = useCurrentUser();
 
   if (isLoading) {
     return;
