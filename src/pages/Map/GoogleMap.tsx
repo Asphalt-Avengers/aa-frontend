@@ -10,10 +10,7 @@ export const GoogleMap: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <APIProvider
-        apiKey={GOOGLE_API_KEY}
-        onLoad={() => console.log('Maps API has loaded.')}
-      >
+      <APIProvider apiKey={GOOGLE_API_KEY}>
         <div style={{ height: '75vh', width: '100%' }}>
           <Map
             zoom={14}

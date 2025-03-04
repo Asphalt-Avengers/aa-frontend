@@ -1,4 +1,4 @@
-import { ClipboardList, LayoutGrid, Map, MapPin } from 'lucide-react';
+import { ClipboardList, LayoutGrid, LogOut, Map, MapPin } from 'lucide-react';
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -15,6 +16,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { useLogout } from '@/hooks/auth/useLogout';
 import { ROUTES } from '@/pages/routes';
 
 interface SidebarItem {
@@ -62,6 +64,16 @@ export const Navrail: FC = () => {
   const { state } = useSidebar();
   const navigate = useNavigate();
 
+  const { mutate: logout, isSuccess } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  if (isSuccess) {
+    navigate(ROUTES.LOGIN);
+  }
+
   return (
     <div>
       <Sidebar collapsible="icon">
@@ -84,7 +96,20 @@ export const Navrail: FC = () => {
         </SidebarContent>
 
         <SidebarSeparator />
+
+        <SidebarFooter>
+          <SidebarMenuItem key="Log Out" className="list-none">
+            <SidebarMenuButton asChild className="list-none">
+              <div onClick={() => handleLogout()}>
+                <LogOut />
+                <Typography variant="l2">Log Out</Typography>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarFooter>
       </Sidebar>
     </div>
   );
 };
+
+export default Navrail;
