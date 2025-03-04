@@ -12,7 +12,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
 }) => {
   return (
     <Typography
-      className={classNames('', className, 'PageHeader-root')}
+      className={classNames('mb-8', className, 'PageHeader-root')}
       variant={'h1'}
     >
       {children}

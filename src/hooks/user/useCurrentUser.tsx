@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 import { serverURL } from '@/hooks/apiConfig';
 
-const API_URL = `${serverURL}/users/me`;
+const API_URL = `${serverURL}/user`;
 
 const userSchema = z.object({
   id: z.number(),
@@ -15,15 +15,15 @@ const userSchema = z.object({
   updatedAt: z.string(),
 });
 
-const getMe = async () => {
+const getCurrentUser = async () => {
   const response = await axios.get(API_URL, { withCredentials: true });
   return userSchema.parse(response.data);
 };
 
-export const useMe = () => {
+export const useCurrentUser = () => {
   return useQuery({
     queryKey: ['currentUser'],
-    queryFn: () => getMe(),
+    queryFn: () => getCurrentUser(),
     retry: false,
   });
 };
