@@ -8,7 +8,7 @@ export const Page: React.FC<PageProps> = ({ className, children }) => {
   return (
     <div
       className={classNames(
-        'flex flex-col mb-8 px-40 py-12 h-full',
+        'flex flex-col px-40 py-12 h-fit',
         className,
         'Page-root'
       )}

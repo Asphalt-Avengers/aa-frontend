@@ -58,8 +58,6 @@ const ReportsTableRow: React.FC<ReportsTableRowProps> = ({ report }) => {
 export const ReportsTable: React.FC = () => {
   const { data: reports, isLoading, isSuccess } = useGetReports();
 
-  console.log(reports);
-
   return (
     <DataTable>
       <DataTableHeader>

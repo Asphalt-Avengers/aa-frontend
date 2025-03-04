@@ -25,7 +25,6 @@ const PublicRoute: React.FC = () => {
 };
 
 const ProtectedRoute: React.FC = () => {
-  return <Outlet />;
   const { data: user, isLoading } = useMe();
 
   if (isLoading) {
