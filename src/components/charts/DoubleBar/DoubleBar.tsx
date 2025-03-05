@@ -9,6 +9,9 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 
+const OPEN_COLOR = '#ffba00';
+const RESOLVED_COLOR = '#74d4ff';
+
 interface ChartData {
   date: string;
   open: number;
@@ -22,11 +25,11 @@ interface DoubleBarProps {
 const chartConfig = {
   open: {
     label: 'Open',
-    color: '#60A5FA',
+    color: OPEN_COLOR,
   },
   resolved: {
     label: 'Resolved',
-    color: '#2563EB',
+    color: RESOLVED_COLOR,
   },
 } satisfies ChartConfig;
 
@@ -47,8 +50,8 @@ export const DoubleBar: React.FC<DoubleBarProps> = ({ data }) => {
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="open" fill="#60A5FA" radius={4} />
-        <Bar dataKey="resolved" fill="#2563EB" radius={4} />
+        <Bar dataKey="open" fill={OPEN_COLOR} radius={4} />
+        <Bar dataKey="resolved" fill={RESOLVED_COLOR} radius={4} />
       </BarChart>
     </ChartContainer>
   );
