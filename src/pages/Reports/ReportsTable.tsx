@@ -1,83 +1,14 @@
-import {
-  DataTable,
-  DataTableBody,
-  DataTableCell,
-  DataTableHead,
-  DataTableHeader,
-  DataTableRow,
-} from '@/components/custom';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Report, useGetReports } from '@/hooks/report/useGetReports';
+import { DataTable } from '@/components/ui/data-table';
+import { useGetReports } from '@/hooks/report/useGetReports';
 
-interface ReportsTableRowProps {
-  report: Report;
-}
-
-const ReportsTableBodySkeleton: React.FC = () => {
-  return (
-    <DataTableBody>
-      {Array.from({ length: 5 }).map((_, index) => (
-        <DataTableRow key={index}>
-          <DataTableCell>
-            <Skeleton className="h-4 w-16" />
-          </DataTableCell>
-          <DataTableCell>
-            <Skeleton className="h-4 w-24" />
-          </DataTableCell>
-          <DataTableCell>
-            <Skeleton className="h-4 w-24" />
-          </DataTableCell>
-          <DataTableCell>
-            <Skeleton className="h-4 w-24" />
-          </DataTableCell>
-          <DataTableCell>
-            <Skeleton className="h-4 w-24" />
-          </DataTableCell>
-        </DataTableRow>
-      ))}
-    </DataTableBody>
-  );
-};
-
-const ReportsTableRow: React.FC<ReportsTableRowProps> = ({ report }) => {
-  return (
-    <DataTableRow>
-      <DataTableCell>{report.id}</DataTableCell>
-      <DataTableCell>{report.status}</DataTableCell>
-      <DataTableCell>{report.detections.length}</DataTableCell>
-      <DataTableCell>
-        {new Date(report.createdAt).toLocaleString()}
-      </DataTableCell>
-      <DataTableCell>
-        {new Date(report.updatedAt).toLocaleString()}
-      </DataTableCell>
-    </DataTableRow>
-  );
-};
+import { reportsColumns } from './ReportsColumns';
 
 export const ReportsTable: React.FC = () => {
-  const { data: reports, isLoading, isSuccess } = useGetReports();
+  const { data: reports, isSuccess } = useGetReports();
 
-  return (
-    <DataTable>
-      <DataTableHeader>
-        <DataTableRow>
-          <DataTableHead className="w-[100px]">ID</DataTableHead>
-          <DataTableHead>Status</DataTableHead>
-          <DataTableHead>Detections</DataTableHead>
-          <DataTableHead>Created At</DataTableHead>
-          <DataTableHead>Updated At</DataTableHead>
-          <DataTableHead />
-        </DataTableRow>
-      </DataTableHeader>
-      {isLoading && <ReportsTableBodySkeleton />}
-      {isSuccess && (
-        <DataTableBody>
-          {reports.map((report) => (
-            <ReportsTableRow key={report.id} report={report} />
-          ))}
-        </DataTableBody>
-      )}
-    </DataTable>
-  );
+  if (isSuccess) {
+    return <DataTable columns={reportsColumns} data={reports} />;
+  }
+
+  return null;
 };
