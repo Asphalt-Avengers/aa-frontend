@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Label, XAxis, YAxis } from 'recharts';
 
 import {
   ChartConfig,
@@ -48,6 +48,9 @@ export const DoubleBar: React.FC<DoubleBarProps> = ({ data }) => {
           axisLine={false}
           tickFormatter={(value: string) => value}
         />
+        <YAxis>
+          <Label value="Count" angle={-90} position="insideLeft" />
+        </YAxis>
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
         <Bar dataKey="open" fill={OPEN_COLOR} radius={4} />
