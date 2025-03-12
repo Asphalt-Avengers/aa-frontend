@@ -31,7 +31,11 @@ export const ReportDetails: React.FC<ReportDetailsProps> = ({ id }) => {
           <Typography variant="p2">
             Last updated: {formattedDate(report.updatedAt)}
           </Typography>
-          <Button variant="link" className="p-0 w-fit" onClick={() => showInMap(report.geom)}>
+          <Button
+            variant="link"
+            className="p-0 w-fit"
+            onClick={() => showInMap(report.geom)}
+          >
             <Typography variant="p2">View on Google Maps</Typography>
           </Button>
         </PageContent>
