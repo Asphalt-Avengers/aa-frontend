@@ -1,5 +1,6 @@
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useGetReports } from '@/hooks/report/useGetReports';
 
@@ -7,6 +8,7 @@ const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY as string;
 
 export const GoogleMap: React.FC = () => {
   const { data: reports, isSuccess } = useGetReports();
+  const navigate = useNavigate();
 
   if (isSuccess) {
     return (
@@ -25,7 +27,7 @@ export const GoogleMap: React.FC = () => {
                 <Marker
                   key={report.id}
                   position={{ lat: latitude, lng: longitude }}
-                  onClick={() => console.log(report)}
+                  onClick={() => navigate(`/home/reports/${report.id}`)}
                 />
               );
             })}
