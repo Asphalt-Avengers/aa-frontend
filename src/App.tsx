@@ -10,7 +10,7 @@ import {
 import { useCurrentUser } from '@/hooks/user/useCurrentUser';
 import { Auth } from '@/layouts/Auth';
 import { Dashboard } from '@/layouts/Dashboard';
-import { Map, Overview, Reports } from '@/pages';
+import { Map, Overview, Report, Reports } from '@/pages';
 import { Login } from '@/pages/Login';
 import { ROUTES } from '@/pages/routes';
 
@@ -57,6 +57,7 @@ function App() {
               />
               <Route path={ROUTES.MAP} element={<Map />} />
               <Route path={ROUTES.OVERVIEW} element={<Overview />} />
+              <Route path={ROUTES.REPORT} element={<Report />} />
               <Route path={ROUTES.REPORTS} element={<Reports />} />
             </Route>
           </Route>
