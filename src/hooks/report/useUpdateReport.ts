@@ -24,7 +24,7 @@ const updateReport = async (
 ) => {
   return await axios.put(
     `${API_URL}/${params.reportId}`,
-    { body },
+    { ...body },
     {
       withCredentials: true,
     }

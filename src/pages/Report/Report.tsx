@@ -1,4 +1,5 @@
-import React from 'react';
+import { SquarePenIcon } from 'lucide-react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import GoogleMapsIcon from '@/assets/google-map-icon.png';
@@ -11,14 +12,66 @@ import {
 } from '@/components/custom';
 import StatusBadge from '@/components/src/StatusBadge/StatusBadge';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
 import { useGetReport } from '@/hooks/report/useGetReport';
+import { useUpdateReport } from '@/hooks/report/useUpdateReport';
+import { ReportStatus } from '@/types';
 import { showInMap } from '@/utils/showInMap';
 
 import { ReportImages } from './ReportImages';
 
 export const Report: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: report, isSuccess } = useGetReport({ reportId: id || '' });
+  const {
+    data: report,
+    isSuccess,
+    refetch,
+  } = useGetReport({ reportId: id || '' });
+  const updateReport = useUpdateReport();
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [comments, setComments] = useState(report?.comments || '');
+  const [status, setStatus] = useState(report?.status || 'OPEN');
+
+  const handleSave = () => {
+    updateReport.mutate(
+      {
+        params: { reportId: id || '' },
+        body: { comments },
+      },
+      {
+        onSuccess: () => {
+          void refetch();
+          setIsEditing(false);
+        },
+      }
+    );
+  };
+
+  const handleStatusChange = (value: string) => {
+    const newStatus = value as ReportStatus;
+    updateReport.mutate(
+      {
+        params: { reportId: id || '' },
+        body: { status: newStatus },
+      },
+      {
+        onSuccess: () => {
+          setStatus(newStatus);
+          void refetch();
+        },
+      }
+    );
+  };
 
   if (isSuccess) {
     return (
@@ -27,12 +80,36 @@ export const Report: React.FC = () => {
         <PageHeader className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             Report {id}
-            <StatusBadge status={report.status ?? 'OPEN'} />
+            <StatusBadge status={status} />
           </div>
-          <Button className="gap-2" onClick={() => showInMap(report.geom)}>
-            <Typography variant="p3">View on Google Maps</Typography>
-            <img src={GoogleMapsIcon} alt="Google Maps" />
-          </Button>
+          <div className="flex gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">Update Status</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>Update Status</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuRadioGroup
+                  onValueChange={(value) => handleStatusChange(value)}
+                >
+                  <DropdownMenuRadioItem value="OPEN">
+                    Open
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="IN_PROGRESS">
+                    In Progress
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="RESOLVED">
+                    Resolved
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button className="gap-2" onClick={() => showInMap(report.geom)}>
+              <Typography variant="p3">View on Google Maps</Typography>
+              <img src={GoogleMapsIcon} alt="Google Maps" />
+            </Button>
+          </div>
         </PageHeader>
 
         <PageContent className="gap-4">
@@ -41,13 +118,27 @@ export const Report: React.FC = () => {
           </PageContent>
 
           <PageContent className="gap-2">
-            <Typography variant="h2">Comments</Typography>
-            <Typography variant="p2">{report.comments}</Typography>
+            <div className="flex items-center gap-4">
+              <Typography variant="h2">Comments</Typography>
+              <SquarePenIcon size={20} onClick={() => setIsEditing(true)} />
+            </div>
+            {isEditing ? (
+              <div className="flex gap-2 items-center">
+                <Input
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                  className="w-[600px]"
+                />
+                <Button onClick={handleSave}>Save</Button>
+              </div>
+            ) : (
+              <Typography variant="p2">{report.comments}</Typography>
+            )}
           </PageContent>
         </PageContent>
       </Page>
     );
   }
 
-  return;
+  return null;
 };
