@@ -20,7 +20,6 @@ export const ReportDetails: React.FC<ReportDetailsProps> = ({ id }) => {
     return (
       <PageContent className="gap-4">
         <PageContent className="gap-2">
-          <Typography variant="h2">Report Data</Typography>
           <StatusBadge status={report.status ?? 'OPEN'} />
           <Typography variant="p2">
             Detections: {report.detections.length}

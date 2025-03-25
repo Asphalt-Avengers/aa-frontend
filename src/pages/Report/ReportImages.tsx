@@ -17,7 +17,7 @@ interface ReportImagesProps {
 
 export const ReportImages: React.FC<ReportImagesProps> = ({ detections }) => {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-[35%]">
       <CarouselContent>
         {detections.map((detection, index) => (
           <CarouselItem key={index}>
