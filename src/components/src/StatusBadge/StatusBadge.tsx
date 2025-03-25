@@ -26,7 +26,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
     default:
       colorClass = 'bg-neutral-0 text-primary';
       displayStatus =
-        status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
+        status ? status.charAt(0).toUpperCase() + status.slice(1).toLowerCase() : "";
   }
 
   return (
