@@ -27,6 +27,16 @@ export const reportsColumns: ColumnDef<Report>[] = [
     },
   },
   {
+    accessorKey: 'detections',
+    header: 'Severity',
+    cell: ({ row }) => {
+      const detections: any[] = row.getValue('detections');
+      const numDetections = detections.length
+      const severity = numDetections < 4 ? 'LOW' : numDetections < 10 ? 'MODERATE' : 'HIGH'
+      return <StatusBadge status={severity} />;
+    },
+  },
+  {
     accessorKey: 'detections.length',
     header: 'Detections',
   },

@@ -55,7 +55,7 @@ export const ReportImages: React.FC<ReportImagesProps> = ({
   };
 
   return (
-    <Carousel className="w-[35%]">
+    <Carousel className="w-[50%]">
       <CarouselContent>
         {detections.map((detection, index) => (
           <CarouselItem key={index}>

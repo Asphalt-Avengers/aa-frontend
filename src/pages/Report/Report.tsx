@@ -66,8 +66,8 @@ export const Report: React.FC = () => {
       },
       {
         onSuccess: () => {
-          setStatus(newStatus);
           void refetch();
+          setStatus(newStatus);
         },
       }
     );
@@ -96,16 +96,13 @@ export const Report: React.FC = () => {
                   <DropdownMenuRadioItem value="OPEN">
                     Open
                   </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="IN_PROGRESS">
-                    In Progress
-                  </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="RESOLVED">
                     Resolved
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button className="gap-2" onClick={() => showInMap(report.geom)}>
+            <Button className="gap-2" onClick={() => showInMap(report.geomJson.coordinates)}>
               <Typography variant="p3">View on Google Maps</Typography>
               <img src={GoogleMapsIcon} alt="Google Maps" />
             </Button>

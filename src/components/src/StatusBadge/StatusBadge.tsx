@@ -23,6 +23,18 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
       colorClass = 'text-primary';
       displayStatus = 'In Progress';
       break;
+    case "LOW":
+      colorClass = 'bg-green-500 text-white';
+      displayStatus = 'Low';
+      break;
+    case "MODERATE":
+      colorClass = 'bg-yellow-500 text-white';
+      displayStatus = 'Moderate';
+      break;
+    case "HIGH":
+      colorClass = 'bg-red-500 text-white';
+      displayStatus = 'High';
+      break;
     default:
       colorClass = 'bg-neutral-0 text-primary';
       displayStatus = status
